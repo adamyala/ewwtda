@@ -23,6 +23,9 @@ class LogEntryAdmin(admin.ModelAdmin):
 class SessionAdmin(admin.ModelAdmin):
     list_display = [
         "session_key",
-        "session_data",
+        "decoded_session_data",
         "expire_date",
     ]
+
+    def decoded_session_data(self, record):
+        return record.get_decoded()
