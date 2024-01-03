@@ -1,0 +1,17 @@
+
+<p onclick='downloadFile()'>Download ⏬</p>
+
+<script>
+    // https://stackoverflow.com/questions/8310657/how-to-create-a-dynamic-file-link-for-download-in-javascript
+
+    let downloadFile = () => {
+        let fileContents = "{{ file_content|escapejs }}";
+        let fileBlob = new Blob([fileContents], {type: "{{ file_content_type }}"});
+        let objectURL = window.URL.createObjectURL(fileBlob);
+
+        let downloadLink = document.createElement('a');
+        downloadLink.download = '{{ file_name}}';
+        downloadLink.href = objectURL;
+        downloadLink.click();
+    }
+</script>

@@ -29,3 +29,20 @@ class SessionAdmin(admin.ModelAdmin):
 
     def decoded_session_data(self, record):
         return record.get_decoded()
+
+
+def to_fieldset(title=None, description=None, style_classes=None, fields=None):
+    style_classes = style_classes or {}
+
+    fields = fields or []
+
+    return (
+        # title is called "name" in the docs
+        title,
+        # the below dict is called "field_options" in the docs
+        {
+            "classes": style_classes,
+            "fields": fields,
+            "description": description,
+        },
+    )
