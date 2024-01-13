@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 from django.utils.safestring import mark_safe
 
-from core.admin import to_fieldset
+from core.admin import VerboseDeleteModelAdmin, to_fieldset
 
 from .models import Event, Organization
 
@@ -18,7 +18,7 @@ class EventInline(admin.TabularInline):
 
 
 @admin.register(Organization)
-class OrganizationAdmin(admin.ModelAdmin):
+class OrganizationAdmin(VerboseDeleteModelAdmin):
     list_display = [
         "name",
     ]
@@ -27,7 +27,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 
 @admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(VerboseDeleteModelAdmin):
     list_display = [
         "name",
         "organization_link",
